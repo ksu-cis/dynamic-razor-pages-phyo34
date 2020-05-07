@@ -48,13 +48,16 @@ namespace Movies.Pages
         public void OnGet(double? IMDBMin, double? IMDBMax)
         {
             /*
-                        Movies = MovieDatabase.All;
-                        SearchTerms = Request.Query["SearchTerms"];
-                        MPAARatings = Request.Query["MPAARatings"];
-                        Genres = Request.Query["Genres"];
-                        this.IMDBMin = IMDBMin;
-                        this.IMDBMax = IMDBMax;
-            */
+         // Nullable conversion workaround
+         this.IMDBMin = IMDBMin;
+         this.IMDBMax = IMDBMax;
+         MPAARating = Request.Query["MPAARatings"];
+         Genres = Request.Query["Genres"];
+         Movies = MovieDatabase.Search(SearchTerms);
+         Movies = MovieDatabase.FilterByMPAARating(Movies, MPAARating);
+         Movies = MovieDatabase.FilterByGenre(Movies, Genres);
+         Movies = MovieDatabase.FilterByIMDBRating(Movies, IMDBMin, IMDBMax);
+         */
             Movies = MovieDatabase.All;
             // Search movie title for the SearchTerms
             if (SearchTerms != null)
