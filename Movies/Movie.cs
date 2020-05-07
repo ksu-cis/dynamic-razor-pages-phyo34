@@ -40,6 +40,5 @@ namespace Movies
         /// </summary>
         public float? RottenTomatoesRating { get; set; }
 
- 
     }
 }

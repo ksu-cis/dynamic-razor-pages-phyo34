@@ -4,15 +4,13 @@
     ViewData["Title"] = "Home page";
 }
 
-<form id="movie-database">
-
+<form id="movie-database" method="post">
     <div id="search">
         <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
-        <input type="submit" value="Search">
+        <input type="submit" value="Search" />
     </div>
 
     <div id="filters">
-
         <h4>MPAA Rating</h4>
         @foreach (String rating in MovieDatabase.MPAARatings)
         {
@@ -26,7 +24,7 @@
         @foreach (String genre in MovieDatabase.Genres)
         {
             <label>
-                <input type="checkbox" name="Genres" value="@genre" checked="@Model.Genres.Contains(genre)" />
+                <input type="checkbox" name="Genres" value="@genre" />
                 @genre
             </label>
         }
@@ -34,9 +32,9 @@
         <h4>IMDB Rating</h4>
         <div>
             Between
-            <input name="IMDBMin" type="number" min="0" max="10" step="0.1" placeholder="min" />
+            <input name="IMDBMin" type="number" min="0" max="10" step="0.1" placeholder="min" value="@Model.IMDBMin" />
             and
-            <input name="IMDBMax" type="number" min="0" max="10" step="0.1" placeholder="min" />
+            <input name="IMDBMax" type="number" min="0" max="10" step="0.1" placeholder="max" value="@Model.IMDBMax" />
         </div>
 
     </div>
@@ -51,7 +49,6 @@
                     <div class="details">
                         <h3 class="title">@movie.Title</h3>
                         <div class="mpaa">@movie.MPAARating</div>
-                        <div class="genre">@movie.MajorGenre</div>
                         <div class="genre">@movie.MajorGenre</div>
                     </div>
                     <div class="ratings">
